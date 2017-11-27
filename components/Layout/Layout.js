@@ -81,10 +81,10 @@ export default ({ children }) => {
           <ListItem
             key='1'
             component={NavigationLink}
-            href='/non-existing-page'
+            href='/store'
             leftIcon={<FontIcon>star</FontIcon>}
             tileClassName='md-list-tile--mini'
-            primaryText={'404 page'}
+            primaryText={'Data Store'}
           />
         ]}
         contentClassName='md-grid'
@@ -92,7 +92,7 @@ export default ({ children }) => {
         mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
         tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
         desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
-        toolbarTitle='Hello, World!'
+        toolbarTitle='Data Store App'
         toolbarActions={closeButton}
       >
         {children}
