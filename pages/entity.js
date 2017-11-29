@@ -5,21 +5,21 @@ import {
   CardTitle,
   CardText,
 } from 'react-md';
-import StoreList from '../components/StoreList/StoreList';
+import EntityList from '../components/EntityList/EntityList';
 import withApollo from '../HOCs/withApollo';
 
-class StorePage extends React.Component {
+class EntityPage extends React.Component {
   render() {
     return (
       <Layout>
         <Card>
-          <CardTitle title='Stores' />
+          <CardTitle title='Entities' />
           <CardText>
-            <StoreList />
+            <EntityList storeId={this.props.url.query.storeId} />
           </CardText>
         </Card>
       </Layout>);
   }
 };
 
-export default withApollo(StorePage);
+export default withApollo(EntityPage);

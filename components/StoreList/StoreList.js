@@ -2,24 +2,31 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { List, ListItem } from 'react-md';
+import Router from 'next/router';
 
-const StoreList = ({ allStoresQuery }) => {  
-  if (allStoresQuery && allStoresQuery.loading) {
-    return <div>Loading</div>
+class StoreList extends React.Component {
+  handleOnItemClick(id) {
+    Router.push(`/entity?storeId=${id}`);
+  } 
+
+  render() {
+      if (this.props.allStoresQuery && this.props.allStoresQuery.loading) {
+      return <div>Loading</div>
+    }
+
+    if (this.props.allStoresQuery && this.props.allStoresQuery.error) {
+      return <div>Error</div>
+    }
+
+    const list = this.props.allStoresQuery.allStores.map((store, index) => (
+      <ListItem key={index} primaryText={store.name} secondaryText={store.description} onClick={this.handleOnItemClick.bind(this, store.id)} />
+    ));
+
+    return (
+      <List className='md-paper md-paper--1'>
+        {list}
+      </List>);
   }
-
-  if (allStoresQuery && allStoresQuery.error) {
-    return <div>Error</div>
-  }
-
-  const list = allStoresQuery.allStores.map((store, index) => (
-    <ListItem key={index} primaryText={store.name} secondaryText={store.description} />
-  ));
-
-  return (
-    <List className='md-paper md-paper--1'>
-      {list}
-    </List>);
 }
 
 const ALL_STORE_QUERY = gql`
